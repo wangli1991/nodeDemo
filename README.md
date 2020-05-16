@@ -103,4 +103,4 @@ $ npm run build
 └── package.json               # package.json
 ```
 
-欢迎访问个人 [github](https://github.com/jiaozhiye) 主页.
+欢迎访问个人 [github](https://github.com/wangli1991) 主页.
