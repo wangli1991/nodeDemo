@@ -1,31 +1,37 @@
+/*
+ * @Author: wangli
+ * @Date: 2020-05-18 13:46:48
+ * @Last Modified by: wangli
+ * @Last Modified time: 2020-05-18 15:24:35
+ */
 class BaseModel {
-  constructor(data, message) {
-    if (typeof data === 'string') {
-      this.message = data
-      data = null
-      message = null
+  constructor(data, msg) {
+    if (typeof data === "string") {
+      this.msg = data;
+      data = null;
+      msg = null;
     }
     if (data) {
-      this.data = data
+      this.data = data;
     }
-    if (message) {
-      this.message = message
+    if (msg) {
+      this.msg = msg;
     }
   }
 }
 class SuccessModel extends BaseModel {
-  constructor(data, message) {
-    super(data, message)
-    this.code = 0
+  constructor(data, msg) {
+    super(data, msg);
+    this.status = "S";
   }
 }
 class ErrorModel extends BaseModel {
-  constructor(data, message) {
-    super(data, message)
-    this.code = -1
+  constructor(data, msg) {
+    super(data, msg);
+    this.code = "E";
   }
 }
 module.exports = {
   SuccessModel,
-  ErrorModel
-}
+  ErrorModel,
+};
