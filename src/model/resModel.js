@@ -2,7 +2,7 @@
  * @Author: wangli
  * @Date: 2020-05-18 13:46:48
  * @Last Modified by: wangli
- * @Last Modified time: 2020-05-18 15:24:35
+ * @Last Modified time: 2020-05-19 10:54:11
  */
 class BaseModel {
   constructor(data, msg) {

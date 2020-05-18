@@ -2,7 +2,7 @@
  * @Author: wangli
  * @Date: 2020-05-18 11:16:59
  * @Last Modified by: wangli
- * @Last Modified time: 2020-05-18 15:51:20
+ * @Last Modified time: 2020-05-19 16:44:53
  */
 const url = require("url");
 const util = require("util");
@@ -48,17 +48,26 @@ const serverHandle = (req, res) => {
     //设置body
     req.body = postData;
     // 处理user路由
-    const userData = handleUserRouter(req, res);
-    if (userData) {
-      res.end(JSON.stringify(userData));
-      return false;
+    const userResult = handleUserRouter(req, res);
+    if (userResult) {
+      userResult.then((userData) => {
+        res.end(JSON.stringify(userData));
+      });
+      return;
     }
     // 处理blog路由
-    const blogData = handleBlogRouter(req, res);
-    if (blogData) {
-      res.end(JSON.stringify(blogData));
-      return false;
+    const blogResult = handleBlogRouter(req, res);
+    if (blogResult) {
+      blogResult.then((blogData) => {
+        res.end(JSON.stringify(blogData));
+      });
+      return;
     }
+    // const blogData = handleBlogRouter(req, res);
+    // if (blogData) {
+    //   res.end(JSON.stringify(blogData));
+    //   return;
+    // }
 
     // 未命中路由 返回404
     res.writeHead(404, { "Content-type": "text/plan" });

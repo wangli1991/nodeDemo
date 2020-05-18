@@ -2,12 +2,13 @@
  * @Author: wangli
  * @Date: 2020-05-18 15:29:43
  * @Last Modified by: wangli
- * @Last Modified time: 2020-05-18 16:46:38
+ * @Last Modified time: 2020-05-19 16:07:33
  */
+const { exec } = require("../db/mysql");
 const loginCheck = (username, password) => {
-  if (username === "a" && password === "123") {
-    return true;
-  }
-  return false;
+  let sql = `select*from users where username='${username}' and password=${password}`;
+  return exec(sql).then((usersData) => {
+    return usersData[0] || {};
+  });
 };
 module.exports = { loginCheck };

@@ -2,7 +2,7 @@
  * @Author: wangli
  * @Date: 2020-05-18 13:47:04
  * @Last Modified by: wangli
- * @Last Modified time: 2020-05-18 16:47:36
+ * @Last Modified time: 2020-05-19 16:15:34
  */
 const { loginCheck } = require("../controller/user");
 const { SuccessModel, ErrorModel } = require("../model/resModel");
@@ -14,11 +14,13 @@ const handleUserRouter = (req, res) => {
   if (method === "POST" && path === "/api/user/login") {
     const { username, password } = req.body;
     const result = loginCheck(username, password);
-    if (result) {
-      return new SuccessModel("登陆成功");
-    } else {
-      return new ErrorModel("登陆失败");
-    }
+    return result.then((data) => {
+      if (data.username) {
+        return new SuccessModel(data, "登陆成功");
+      } else {
+        return new ErrorModel("登陆失败");
+      }
+    });
   }
 };
 module.exports = handleUserRouter;
