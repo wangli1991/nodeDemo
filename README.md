@@ -7,7 +7,7 @@
 $ yarn install 或 npm install
 
 # 启动本地服务
-$ npm run start 或 npm run dev
+$ node ./bin/www.js
 
 # 发布，构建生产环境代码
 $ npm run build
