@@ -8,9 +8,7 @@ $ yarn install 或 npm install
 
 # 启动本地服务
 $ node ./bin/www.js
-
-# 发布，构建生产环境代码
-$ npm run build
+$ nodemon ./bin/www.js 自动刷新
 ```
 
 欢迎访问个人 [github](https://github.com/wangli1991) 主页.
