@@ -2,7 +2,7 @@
  * @Author: wangli
  * @Date: 2020-05-18 11:16:59
  * @Last Modified by: wangli
- * @Last Modified time: 2020-05-19 16:44:53
+ * @Last Modified time: 2020-05-20 08:45:29
  */
 const url = require("url");
 const util = require("util");
@@ -41,8 +41,24 @@ const serverHandle = (req, res) => {
   res.setHeader("Content-type", "application/json");
   //获取path
   req.path = url.parse(req.url, true).pathname;
-  //设置query
+  //解析query
   req.query = url.parse(req.url, true).query;
+  //解析cookie
+  // 服务器端读取cookie
+  req.cookie = {};
+  let cookies = req.headers.cookie ? req.headers.cookie.split(";") : [];
+  if (cookies.length > 0) {
+    cookies.forEach((item) => {
+      if (item) {
+        let cookieArray = item.split("=");
+        if (cookieArray && cookieArray.length > 0) {
+          let key = cookieArray[0].trim();
+          let value = cookieArray[1] ? cookieArray[1].trim() : undefined;
+          req.cookie[key] = value;
+        }
+      }
+    });
+  }
   //处理 post data
   getPostData(req).then((postData) => {
     //设置body
